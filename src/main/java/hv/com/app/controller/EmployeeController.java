@@ -1,5 +1,7 @@
 package hv.com.app.controller;
 
+import java.util.List;
+
 import hv.com.app.model.Employee;
 import hv.com.app.service.EmployeeService;
 
@@ -40,6 +42,14 @@ public class EmployeeController {
 		boolean rs = service.saveOrUpdateEmployee(employee);
 		System.out.println("Test: " + rs);
 		model.setViewName("test");
+		return model;
+	}
+	
+	@RequestMapping(value="/list", method = RequestMethod.GET) 
+	public ModelAndView getList(ModelAndView model) {
+		List<Employee> list = service.getAllEmployee();
+		model.addObject("list", list);
+		model.setViewName("list");
 		return model;
 	}
 }
